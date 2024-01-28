@@ -1,0 +1,672 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="roomba">
+
+  <!-- Links -->
+
+  <!-- Base FootPrint Link -->
+  <link name="base_footprint"/>
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.0507186439358924" />
+      <inertia ixx="0.00027049532304562" ixy="1.0184652408305E-07" ixz="3.11479800943731E-23" iyy="0.000230379794319657" iyz="-1.79969555498516E-24" izz="0.000500866664257955" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://roomba_description/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://roomba_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  
+  <!-- Head Link -->
+  <link
+    name="head_link">
+    <inertial>
+      <origin
+        xyz="-0.0166927310179169 -0.000209984417467002 0.0164560109076421"
+        rpy="0 0 0" />
+      <mass
+        value="0.256075063957645" />
+      <inertia
+        ixx="0.00161176755917425"
+        ixy="-8.18766588309404E-08"
+        ixz="5.46013238422469E-06"
+        iyy="0.000805062871601863"
+        iyz="-2.47490805257779E-09"
+        izz="0.0023986270923905" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/head_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- CBase Link -->
+  <link
+    name="cbase_link">
+    <inertial>
+      <origin
+        xyz="0.0155582295915918 -4.36055885844056E-10 0.049229551415042"
+        rpy="0 0 0" />
+      <mass
+        value="0.0291832720169813" />
+      <inertia
+        ixx="4.08508080716264E-05"
+        ixy="6.74318836739577E-14"
+        ixz="-1.53438886920864E-05"
+        iyy="4.51475174862487E-05"
+        iyz="5.13267733656048E-13"
+        izz="1.40663498849746E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/cbase_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/cbase_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- Laser Link -->
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.00325618278851393 -0.0156147178070151 -0.0140533101149626"
+        rpy="0 0 0" />
+      <mass
+        value="0.0491274993217521" />
+      <inertia
+        ixx="6.83938204556318E-06"
+        ixy="-5.61977433188601E-08"
+        ixz="5.04974936140186E-10"
+        iyy="9.0569677553162E-06"
+        iyz="1.49730447984284E-10"
+        izz="1.10223942588917E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- Camera Link -->
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="-0.0190723520728568 0.000439583384630932 -8.51448129600141E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.182525153723224" />
+      <inertia
+        ixx="0.000397614971910582"
+        ixy="3.33789605223511E-08"
+        ixz="1.32163822615461E-07"
+        iyy="3.58585683764839E-05"
+        iyz="1.53468627213694E-10"
+        izz="0.000406220287804077" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- Right Link -->
+  <link
+    name="right_link">
+    <inertial>
+      <origin
+        xyz="0 -2.77555756156289E-17 -3.46944695195361E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0610725611857856" />
+      <inertia
+        ixx="2.0932620346428E-05"
+        ixy="-5.04870979341448E-29"
+        ixz="-1.19131885649342E-20"
+        iyy="2.0932620346428E-05"
+        iyz="9.32147423146491E-19"
+        izz="3.9575019648389E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.015" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- Left Link -->
+  <link
+    name="left_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0610725611857856" />
+      <inertia
+        ixx="2.0932620346428E-05"
+        ixy="5.9162804616133E-34"
+        ixz="6.89957403534514E-21"
+        iyy="2.0932620346428E-05"
+        iyz="9.32147422637481E-19"
+        izz="3.95750196483891E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.036" length="0.015" />
+      </geometry>
+    </collision>
+  </link>
+
+
+
+  <!-- Front Link -->
+  <link
+    name="front_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00502921680620392" />
+      <inertia
+        ixx="2.27248756479945E-07"
+        ixy="0"
+        ixz="-1.27098804731044E-39"
+        iyy="2.27248756479945E-07"
+        iyz="-3.58732393405981E-40"
+        izz="2.27248756479945E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/front_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.010628" />        
+      </geometry>
+    </collision>
+  </link>
+
+
+
+  <!-- Back Link -->
+  <link
+    name="back_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00502921680620392" />
+      <inertia
+        ixx="2.27248756479945E-07"
+        ixy="-8.27180612553028E-25"
+        ixz="1.10838339471576E-32"
+        iyy="2.27248756479945E-07"
+        iyz="1.27308116622745E-32"
+        izz="2.27248756479945E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://roomba_description/meshes/back_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.749019607843137 0.749019607843137 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.010628" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- IMU Link -->
+  <link name="imu_link"/>
+
+  
+
+  <!-- Joints -->
+  <!-- Base Joints -->
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0.00191" rpy="0 0 0" />
+    <parent link="base_footprint" />
+    <child link="base_link" />
+  </joint>
+
+  <!-- Head Joints -->
+  <joint
+    name="head_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0085063 0.00096882 0.0855"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="head_link" />
+  </joint>
+
+
+  <!-- CBase Joints -->
+  <joint
+    name="cbase_joint"
+    type="fixed">
+    <origin
+      xyz="-0.074418 0.0009688 0.1175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="cbase_link" />
+  </joint>
+
+
+
+  <!-- Camera Joints -->
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.2081"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+  </joint>
+  
+
+  <!-- Laser Joints -->
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="-0.011043 0.0052038 0.1385"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+  </joint>
+
+
+  <!-- Left Joints -->
+  <joint
+    name="left_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0052123 0.11547 0.02702"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <!-- Right Joints -->
+  <joint
+    name="right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.00524 -0.11353 0.026978"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+
+  <!-- Front Joints -->
+  <joint
+    name="front_joint"
+    type="fixed">
+    <origin
+      xyz="0.11749 0.00096884 0.002"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_link" />
+  </joint>
+  <!-- Back Joints -->
+  <joint
+    name="back_joint"
+    type="fixed">
+    <origin
+      xyz="-0.11659 0.00096884 0.0019838"
+      rpy="-1.5708 0.034034 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_link" />
+  </joint>
+
+
+
+  <!-- IMU Joints -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="-0.032 0 0.068" rpy="0 0 0"/>
+  </joint>
+
+
+
+
+
+
+
+  <!-- Configuration Wheels -->
+  <gazebo reference="left_link">
+    <mu1>10000.0</mu1>
+    <mu2>10000.0</mu2>
+    <kp>3000000.0</kp>
+    <kd>90.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <gazebo reference="right_link">
+    <mu1>10000.0</mu1>
+    <mu2>10000.0</mu2>
+    <kp>3000000.0</kp>
+    <kd>90.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+  
+  <gazebo reference="front_link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <gazebo reference="back_link">
+    <mu1>0.0001</mu1>
+    <mu2>0.0001</mu2>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+  
+  <!-- Plugin -->
+  <gazebo>
+    <!-- Plugin control ruedas diferenciales -->
+    <plugin name="wheel_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace></namespace>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+      <update_rate>1</update_rate>
+      <left_joint>left_joint</left_joint>
+      <right_joint>right_joint</right_joint>
+      <wheel_separation>0.229</wheel_separation>
+      <wheel_diameter>0.072</wheel_diameter>
+      <max_wheel_torque>10</max_wheel_torque>
+      <max_wheel_acceleration>1.0</max_wheel_acceleration>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
+    </plugin>
+  </gazebo>
+
+  <!-- ************************* -->
+  <!-- ***** GAZEBO LASER ****** -->
+  <!-- ************************* -->
+  <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <always_on>true</always_on>
+      <update_rate>5.0</update_rate>
+      <visualize>true</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.28319</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>1.5</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace></namespace>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+      </plugin>
+    </sensor>
+  </gazebo>
+  
+  <!-- ************************* -->
+  <!-- **** GAZEBO CAM_LINK **** -->
+  <!-- ************************* -->
+  <gazebo reference="camera_link">
+      <material>Gazebo/Black</material>
+      <sensor name="camera" type="camera">
+        <pose> 0 0 0 0 0 0 </pose>
+        <visualize>true</visualize>
+        <update_rate>30</update_rate>
+        <camera>
+            <horizontal_fov>1.085595</horizontal_fov>
+            <image>
+                <format>R8G8B8</format>
+                <width>640</width>
+                <height>480</height>
+            </image>
+            <clip>
+                <near>0.03</near>
+                <far>100</far>
+            </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <frame_name>camera_link</frame_name>
+        </plugin>
+      </sensor>
+      <sensor name="intel_realsense_r200_depth" type="depth">
+        <always_on>1</always_on>
+        <update_rate>1</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <camera name="realsense_depth_camera">
+        </camera>
+        <plugin name="intel_realsense_r200_depth_driver" filename="libgazebo_ros_camera.so">
+            <camera_name>intel_realsense_r200_depth</camera_name>
+            <frame_name>camera_link</frame_name>
+            <hack_baseline>0.07</hack_baseline>
+            <min_depth>0.001</min_depth>
+          </plugin>
+      </sensor>
+  </gazebo>
+
+
+  <!-- ************************* -->
+  <!-- **** GAZEBO IMU_LINK **** -->
+  <!-- ************************* -->
+  <gazebo reference="imu_link">
+    <material>Gazebo/Grey</material>
+    <sensor type="imu" name="imu">
+      <always_on>true</always_on>
+      <update_rate>100.0</update_rate>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+</robot>
